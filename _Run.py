@@ -3,11 +3,11 @@ import sys
 import cv2
 import numpy as np
 
-from ConsoleColor import print, console
-from pathlib import *
-
 from os import path
 sys.path.append( path.dirname( path.abspath(__file__) ) )
+
+from ConsoleColor import print, console
+from pathlib import *
 
 main=sys.argv.pop(0)
 sizeW=1080
@@ -47,12 +47,13 @@ def resize(file):
     
     if not edit:
         print_skip(file)
-        return
+        #return
     
-    result, encoded_img = cv2.imencode(file.suffix, img)
+    result, encoded_img = cv2.imencode(".jpg", img)
     if result:
         Path( file.parent,'_result').mkdir(parents=True,exist_ok=True)
-        with open(Path( file.parent,'_result',file.name), mode='w+b') as f:
+        print(file.name)
+        with open(Path( file.parent,'_result',file.with_suffix(".jpg").name), mode='w+b') as f:
             encoded_img.tofile(f)
             print_ok(file)
 

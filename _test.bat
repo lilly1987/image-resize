@@ -4,6 +4,6 @@ rem set-executionPolicy remoteSigned
 
 pushd %~dp0
 
-..\python_embeded\python.exe -s Run.py %*
+..\python_embeded\python.exe -s test.py %*
 
 pause
